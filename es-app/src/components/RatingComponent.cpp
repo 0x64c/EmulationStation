@@ -36,7 +36,11 @@ void RatingComponent::setValue(const std::string& value)
 
 std::string RatingComponent::getValue() const
 {
-	return std::to_string((long double)mValue);
+	#ifdef __GCW0__
+		return "0";
+	#else
+		return std::to_string((long double)mValue);
+	#endif
 }
 
 void RatingComponent::onSizeChanged()
