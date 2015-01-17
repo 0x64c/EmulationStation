@@ -131,7 +131,7 @@ void SystemData::launchGame(Window* window, FileData* game)
 
 	//update number of times the game has been launched
 	int timesPlayed = game->metadata.getInt("playcount") + 1;
-	#ifdef __gcw0__
+	#ifdef __GCW0__
 		game->metadata.set("playcount", "0");
 	#else
 		game->metadata.set("playcount", std::to_string(static_cast<long long>(timesPlayed)));
