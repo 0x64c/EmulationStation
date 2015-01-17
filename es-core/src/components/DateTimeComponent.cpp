@@ -206,21 +206,27 @@ std::string DateTimeComponent::getDisplayString(DisplayMode mode) const
 
 			if(mTime == not_a_date_time)
 				return "never";
+			
+			#ifdef __GCW0__
+				return "sometime";
+			#endif
+			
+			#ifndef __GCW0__
+				ptime now = second_clock::universal_time();
+				time_duration dur = now - mTime;
 
-			ptime now = second_clock::universal_time();
-			time_duration dur = now - mTime;
+				if(dur < seconds(2))
+					return "just now";
+				if(dur < seconds(60))
+					return std::to_string((long long)dur.seconds()) + " secs ago";
+				if(dur < minutes(60))
+					return std::to_string((long long)dur.minutes()) + " min" + (dur < minutes(2) ? "" : "s") + " ago";
+				if(dur < hours(24))
+					return std::to_string((long long)dur.hours()) + " hour" + (dur < hours(2) ? "" : "s") + " ago";
 
-			if(dur < seconds(2))
-				return "just now";
-			if(dur < seconds(60))
-				return std::to_string((long long)dur.seconds()) + " secs ago";
-			if(dur < minutes(60))
-				return std::to_string((long long)dur.minutes()) + " min" + (dur < minutes(2) ? "" : "s") + " ago";
-			if(dur < hours(24))
-				return std::to_string((long long)dur.hours()) + " hour" + (dur < hours(2) ? "" : "s") + " ago";
-
-			long long days = (long long)(dur.hours() / 24);
-			return std::to_string(days) + " day" + (days < 2 ? "" : "s") + " ago";
+				long long days = (long long)(dur.hours() / 24);
+				return std::to_string(days) + " day" + (days < 2 ? "" : "s") + " ago";
+			#endif
 		}
 		break;
 	}
