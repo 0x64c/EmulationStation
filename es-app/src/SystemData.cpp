@@ -131,8 +131,11 @@ void SystemData::launchGame(Window* window, FileData* game)
 
 	//update number of times the game has been launched
 	int timesPlayed = game->metadata.getInt("playcount") + 1;
-	game->metadata.set("playcount", std::to_string(static_cast<long long>(timesPlayed)));
-
+	#ifdef __gcw0__
+		game->metadata.set("playcount", "0");
+	#else
+		game->metadata.set("playcount", std::to_string(static_cast<long long>(timesPlayed)));
+	#endif
 	//update last played time
 	boost::posix_time::ptime time = boost::posix_time::second_clock::universal_time();
 	game->metadata.setTime("lastplayed", time);
