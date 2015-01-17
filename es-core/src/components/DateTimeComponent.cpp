@@ -209,9 +209,7 @@ std::string DateTimeComponent::getDisplayString(DisplayMode mode) const
 			
 			#ifdef __GCW0__
 				return "sometime";
-			#endif
-			
-			#ifndef __GCW0__
+			#else
 				ptime now = second_clock::universal_time();
 				time_duration dur = now - mTime;
 
