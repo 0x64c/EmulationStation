@@ -19,7 +19,12 @@ void RatingComponent::setValue(const std::string& value)
 	{
 		mValue = 0.0f;
 	}else{
-		mValue = stof(value);
+		#ifdef __GCW0__
+			mValue = 1.0f;
+		#else
+			mValue = stof(value);
+		#endif
+		
 		if(mValue > 1.0f)
 			mValue = 1.0f;
 		else if(mValue < 0.0f)
