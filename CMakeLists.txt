@@ -16,6 +16,8 @@ set_property(CACHE GLSystem PROPERTY STRINGS "Desktop OpenGL" "OpenGL ES")
 
 #OpenGL ES Asserted for GCW0; don't know yet how to check properly
 set(GLSystem "OpenGL ES")
+#Add compiler definition
+add_definitions(-D__GCW0__)
 
 #-------------------------------------------------------------------------------
 #check if we're running on Raspberry Pi
