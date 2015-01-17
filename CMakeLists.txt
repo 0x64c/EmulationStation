@@ -14,6 +14,9 @@ LIST(APPEND CMAKE_MODULE_PATH
 set(GLSystem "Desktop OpenGL" CACHE STRING "The OpenGL system to be used")
 set_property(CACHE GLSystem PROPERTY STRINGS "Desktop OpenGL" "OpenGL ES")
 
+#OpenGL ES Asserted for GCW0; don't know yet how to check properly
+set(GLSystem "OpenGL ES")
+
 #-------------------------------------------------------------------------------
 #check if we're running on Raspberry Pi
 MESSAGE("Looking for bcm_host.h")
