@@ -18,6 +18,8 @@ set_property(CACHE GLSystem PROPERTY STRINGS "Desktop OpenGL" "OpenGL ES")
 set(GLSystem "OpenGL ES")
 #Add compiler definition
 add_definitions(-D__GCW0__)
+#Link iconv
+set(CMAKE_CXX_FLAGS "-liconv")
 
 #-------------------------------------------------------------------------------
 #check if we're running on Raspberry Pi
