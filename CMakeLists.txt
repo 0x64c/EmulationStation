@@ -19,7 +19,7 @@ set(GLSystem "OpenGL ES")
 #Add compiler definition
 add_definitions(-D__GCW0__)
 #Link iconv
-set(CMAKE_CXX_FLAGS "-liconv")
+set(CMAKE_CXX_FLAGS "-liconv -lwebp -lfreeimage")
 
 #-------------------------------------------------------------------------------
 #check if we're running on Raspberry Pi
